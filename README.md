@@ -1,3 +1,2 @@
 # Leetcode-answer
-Daily Update
-\\practice C coding
+Daily Update \practice C coding
