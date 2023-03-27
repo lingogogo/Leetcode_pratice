@@ -21,6 +21,5 @@ bool isSameTree(struct TreeNode* p, struct TreeNode* q){
     }
     bool take1 = isSameTree(p->left,q->left);
     bool take2 = isSameTree(p->right,q->right);
-    return (true && take1 && take2);
-
+    return (take1 && take2);
 }
