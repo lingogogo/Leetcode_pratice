@@ -10,7 +10,12 @@ int** generate(int numRows, int* returnSize, int** returnColumnSizes){
     for (int i = 0; i < numRows; i ++) {
         (*returnColumnSizes)[i] = i + 1;
     }
-
+    /* The same as above part.
+    returnColumnSizes[0] = (int*)malloc(numRows * sizeof(int));
+    for (int i = 0; i < numRows; i ++) {
+        returnColumnSizes[0][i] = i + 1;
+    }
+    */
     int **ans = (int**) malloc(numRows* sizeof(int*));
     
     for(int i =0; i < numRows;i++)
