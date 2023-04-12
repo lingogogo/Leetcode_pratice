@@ -28,6 +28,4 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
             k2 = headA;
     }
     return k1;
-   
-
 }
