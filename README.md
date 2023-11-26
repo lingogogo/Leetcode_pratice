@@ -1,7 +1,7 @@
 # Leetcode-answer
 Daily Update 
 
-practice C coding
+practice C || C++ coding
 
 # Note
 int snprintf ( char * str, size_t size, const char * format, ... );
