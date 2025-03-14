@@ -15,6 +15,8 @@ Find target by high and low values.
 
 Difference array: Difference array D[i] of a given array A[i] is defined as D[i] = A[i]-A[i-1] (for 0 < i < N ) and D[0] = A[0] considering 0 based indexing. Difference array can be used to perform range update queries “l r x” where l is left index, r is right index and x is value to be added and after all queries you can return original array from it. Where update range operations can be performed in O(1) complexity.
 
+If the problem time complexity is too large, binary search might be the better solution.
+
 Leetcode problem: Zero Array Transformation II
 
 # problem
