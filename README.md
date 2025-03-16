@@ -19,7 +19,9 @@ Difference array: Difference array D[i] of a given array A[i] is defined as D[i]
 
 If the problem time complexity is too large, binary search might be the better solution.
 
-Leetcode problem: Zero Array Transformation II
+常見的場景應用: 搜尋排序數組、查找邊界值、優化競技類問題、矩陣搜尋 (Leetcode problem: Zero Array Transformation II, minimum time to repair cars)
+
+
 
 # problem
 
