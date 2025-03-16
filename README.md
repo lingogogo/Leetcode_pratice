@@ -1,5 +1,7 @@
 Leetcode account: https://leetcode.com/u/CianSyue/
 
+![LeetCode Stats](https://leetcard.jacoblin.cool/CianSyue)
+
 # Leetcode-answer
 Daily Update 
 
