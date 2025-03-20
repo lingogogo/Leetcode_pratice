@@ -1,4 +1,4 @@
-Union-find技巧
+#### Union-find技巧
 
 建立起一個connected component，並且對其做path compression，會將其建立起來的新的union component變成一個較平的樹，在搜索上會較快
 發現: edge的順序會影響其建立起來的graph長相會不一樣
