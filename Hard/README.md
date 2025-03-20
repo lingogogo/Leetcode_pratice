@@ -5,6 +5,8 @@
 發現: edge的順序會影響其建立起來的graph長相會不一樣
 
 ## 定義
+網址: https://web.ntnu.edu.tw/~algo/ConnectedComponent.html
+
 連通圖（Connected Graph): 整個圖是單一連通分量（即任意兩個節點之間都有路徑）。
 
 連通分量（Connected Component）: 無向圖中的極大連通子圖，即內部所有節點都有路徑相連，但不與外部節點相連。
