@@ -5,7 +5,6 @@
 發現: edge的順序會影響其建立起來的graph長相會不一樣
 
 ## 定義
-網址: https://web.ntnu.edu.tw/~algo/ConnectedComponent.html
 
 連通圖（Connected Graph): 整個圖是單一連通分量（即任意兩個節點之間都有路徑）。
 
@@ -14,3 +13,5 @@
 非連通圖（Disconnected Graph）: 圖中有兩個或以上的連通分量，即存在無法互相連通的節點群組。
 
 強連通分量(strongly connected component): 一張有向圖的「強連通分量」，是所有兩點之間，雙向皆有路可通的連通分量。一張有向圖的強連通分量們，不可能互相重疊。
+
+資料來源: https://web.ntnu.edu.tw/~algo/ConnectedComponent.html
