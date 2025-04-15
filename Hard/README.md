@@ -17,8 +17,8 @@
 ![image](https://github.com/user-attachments/assets/b636ec5e-2c04-4322-9e6d-6117bcc8d0ba)
 
 這張圖就是BIT常見的樣子，下面則為每個節點所包含的資訊多寡。
-tree[1] => 管理 [1]
-tree[2] => 管理 [1,2]
+tree[1] => 管理 [1] \\
+tree[2] => 管理 [1,2]\\
 tree[3] => 管理 [3]
 tree[4] => 管理 [1,2,3,4]
 tree[5] => 管理 [5]
