@@ -14,6 +14,16 @@
 
 可以快速處理 前綴和（Prefix Sum）或頻率統計問題 的資料結構，尤其是在需要頻繁修改與查詢的動態情況下非常有效。
 並且透過lowbit(i)，進行binary indexed tree(binary指的是二進位)。
+![image](https://github.com/user-attachments/assets/b636ec5e-2c04-4322-9e6d-6117bcc8d0ba)
+這張圖就是BIT常見的樣子，下面則為每個節點所包含的資訊多寡。
+tree[1] => 管理 [1]
+tree[2] => 管理 [1,2]
+tree[3] => 管理 [3]
+tree[4] => 管理 [1,2,3,4]
+tree[5] => 管理 [5]
+tree[6] => 管理 [5,6]
+tree[7] => 管理 [7]
+tree[8] => 管理 [1,2,3,4,5,6,7,8]
 
 1. 點更新(單點修改)
 2. 區間查詢(前綴和): 就是透過lowbit()的方式，可以找其所有父代的父代資訊。
