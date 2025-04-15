@@ -15,6 +15,7 @@
 可以快速處理 前綴和（Prefix Sum）或頻率統計問題 的資料結構，尤其是在需要頻繁修改與查詢的動態情況下非常有效。
 並且透過lowbit(i)，進行binary indexed tree(binary指的是二進位)。
 ![image](https://github.com/user-attachments/assets/b636ec5e-2c04-4322-9e6d-6117bcc8d0ba)
+
 這張圖就是BIT常見的樣子，下面則為每個節點所包含的資訊多寡。
 tree[1] => 管理 [1]
 tree[2] => 管理 [1,2]
