@@ -10,6 +10,17 @@
 
 資料來源: https://yuihuang.com/digit-dp/
 
+#### Fenwick Tree
+
+可以快速處理 前綴和（Prefix Sum）或頻率統計問題 的資料結構，尤其是在需要頻繁修改與查詢的動態情況下非常有效。
+並且透過lowbit(i)，進行binary indexed tree(binary指的是二進位)。
+
+1. 點更新(單點修改)
+2. 區間查詢(前綴和): 就是透過lowbit()的方式，可以找其所有父代的父代資訊。
+
+
+網址:https://hackmd.io/@wiwiho/cp-note/%2F%40wiwiho%2FCPN-binary-indexed-tree
+
 ## 定義
 
 連通圖（Connected Graph): 整個圖是單一連通分量（即任意兩個節點之間都有路徑）。
