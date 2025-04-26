@@ -13,6 +13,8 @@
 //         return output;
 //     }
 // };
+// For root node we have total 1 to n choice. For every ith node we have (l to i-1) choice for left root and (i+1 to r) choice for the right root.
+// If we have a valid BST for left subtree and b valid BST for right subtree then we will have a*b valid subtree for current node because Every left subtree BST can pair with every right subtree BST.
 // https://leetcode.com/problems/unique-binary-search-trees/solutions/6654202/recursion-memorization-c-intuitive-solution
 class Solution {
 public:
