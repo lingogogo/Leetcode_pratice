@@ -44,6 +44,12 @@ tree[8] => 管理 [1,2,3,4,5,6,7,8]
 
 網址:https://hackmd.io/@wiwiho/cp-note/%2F%40wiwiho%2FCPN-binary-indexed-tree
 
+#### 使用C數找其排列組合
+
+3343. Count Number of Balanced Permutations
+
+網址: https://leetcode.com/problems/count-number-of-balanced-permutations/editorial
+
 ## 定義
 
 連通圖（Connected Graph): 整個圖是單一連通分量（即任意兩個節點之間都有路徑）。
@@ -55,3 +61,5 @@ tree[8] => 管理 [1,2,3,4,5,6,7,8]
 強連通分量(strongly connected component): 一張有向圖的「強連通分量」，是所有兩點之間，雙向皆有路可通的連通分量。一張有向圖的強連通分量們，不可能互相重疊。
 
 資料來源: https://web.ntnu.edu.tw/~algo/ConnectedComponent.html
+
+
