@@ -53,7 +53,7 @@
 //         }
 //     }
 // };
-
+// https://leetcode.com/problems/reverse-linked-list-ii/solutions/5418381/video-simple-solution
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
@@ -70,7 +70,7 @@ public:
         }
 
         ListNode* cur = prev->next;
-        cout << "cur: " << cur->val << endl;
+        // cout << "cur: " << cur->val << endl;
         for (int i = 0; i < right - left; i++) {
             ListNode* temp = cur->next;
             cur->next = temp->next;
