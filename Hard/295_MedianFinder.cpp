@@ -46,3 +46,45 @@ public:
  * obj->addNum(num);
  * double param_2 = obj->findMedian();
  */
+// method 2: TLE
+// Explaination: The sort function is nlog(n), it spend too large time to solve the benchmarks.
+class MedianFinder {
+public:
+    
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int n) {
+        
+        // cout << num.back() << endl;
+        if(size_num != 0 && n < num.back()){
+            // cout << "n: " << n << endl;
+            this->num.push_back(n);
+            sort(num.begin(),num.end());
+            // for(int i = 0; i< num.size(); i++)
+            // {
+            //     cout << num[i] << endl;
+            // }
+            // cout << endl;
+        }else{
+            num.push_back(n);
+        }
+        size_num++;
+    }
+    
+    double findMedian() {
+        double output = 0;
+        if(size_num % 2 == 0)
+        {
+            output = (double(num[size_num/2]) + double(num[size_num/2 - 1]))/2;
+        }else{
+            output = num[size_num/2];
+        }
+
+        return output;
+    }
+private:
+    vector<int> num;
+    int size_num = 0;
+};
