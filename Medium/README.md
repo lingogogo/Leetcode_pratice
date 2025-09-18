@@ -59,11 +59,8 @@ Use BFS + priority_queue;
 本身set資料結構是使用balanced binary search，所以其符合BST性質
 
 1. 以左邊節點 ( left node ) 作為根的子樹 ( sub-tree ) 的所有值都小於根節點 ( root )
-2. 
-3. 以右邊節點 ( right node ) 作為根的子樹 ( sub-tree ) 的所有值都大於根節點 ( root )
-4. 
-5. 任意節點 ( node ) 的左、右子樹也分別符合 BST 的定義
-6. 
-7. 不存在任何鍵值 ( key/value ) 相等的節點。
+2.  以右邊節點 ( right node ) 作為根的子樹 ( sub-tree ) 的所有值都大於根節點 ( root )
+3.  任意節點 ( node ) 的左、右子樹也分別符合 BST 的定義
+4.  不存在任何鍵值 ( key/value ) 相等的節點。
 
 
