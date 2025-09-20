@@ -3,7 +3,7 @@ public:
     typedef pair<int,pair<int,int>> pip;
     queue<pip> q;
     set<pip> ust;
-    unordered_map<int,pair<int,vector<int>>> mp;
+    unordered_map<int,pair<int,vector<int>>> mp; // mp[].second.first是一個紀錄被遺棄多少個packet，應該要從哪裡開始
     int maxp;
     Router(int memoryLimit) {
         maxp=memoryLimit;
