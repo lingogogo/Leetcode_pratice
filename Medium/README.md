@@ -63,4 +63,10 @@ Use BFS + priority_queue;
 3.  任意節點 ( node ) 的左、右子樹也分別符合 BST 的定義
 4.  不存在任何鍵值 ( key/value ) 相等的節點。
 
+#### 3508 note
+
+只有vector, array, deque這一種資料結構可以使用upper_bound lower_bound找上下限的概念去找其中間元素有幾個。(Random Access Iterator)
+
+其他迭代器因為記憶體不連續，並不支持使用記憶體互減的方式獲得中間有多少元素值。
+
 
