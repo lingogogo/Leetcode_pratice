@@ -1,52 +1,93 @@
-// class MovieRentingSystem {
-// // private:
-//     // thought we need a data structure for search to find out the cheapest 5 shops of a given movie
-//     unordered_map<int,map<prices,pair<int,bool>>> movietoshop; // set<prices,shop,rented bool>
-//     set<tuple<int,int,int>> rented; // prices,shops,movie
-//     int totalshop = 0;
-// public:
-//     MovieRentingSystem(int n, vector<vector<int>>& entries) {
-//         totalshop = n;
-//         for(int i = 0;i < entries.size();i++)
-//         {
-//             // movietoshop[entries[i][1]].insert({entries[i][2],entries[i][0],false});
-//             movietoshop[entries[i][1]][entries[i][2]] = {entries[i][0],false}; 
-//         }
-//     }
+// my method
+// disadvantage: The bad condition for search function is O(t) t is all the shop with moive
+// drop and rent find out the result with O(n) due to for loop.
+// if we use the function in the set, map (red black tree), with fast search and delete O(n)
+// std::set::find() 的時間複雜度是 O(logn)。
+// std::set::insert() 的時間複雜度是 O(logn)。
+// std::set::erase() 的時間複雜度是 O(logn)。
+class MovieRentingSystem {
+// private:
+    // thought we need a data structure for search to find out the cheapest 5 shops of a given movie
+    unordered_map<int,set<tuple<int,int,bool>>> movietoshop; // set<prices,shop,rented bool>
+    set<tuple<int,int,int>> rented; // prices,shops,movie
+    int totalshop = 0;
+public:
+    MovieRentingSystem(int n, vector<vector<int>>& entries) {
+        totalshop = n;
+        for(int i = 0;i < entries.size();i++)
+        {
+            movietoshop[entries[i][1]].insert({entries[i][2],entries[i][0],false});
+        }
+    }
     
-//     vector<int> search(int movie) {
-//         vector<int> cheapestmovie;
-//         int count = 0;
-//         for(auto& it = movietoshop[movie].begin(); it!=movietoshop[movie].end();it++)
-//         {
-//             const auto& [price, shop, rented_status] = *it;
-//             if(!rented_status)
-//             {
-//                 cheapestmoive.push_back(shop);
-//                 count++;
-//             }
+    vector<int> search(int movie) {
+        vector<int> cheapestmovie;
+        int count = 0;
+        for(auto it = movietoshop[movie].begin(); it!=movietoshop[movie].end();it++)
+        {
+            const auto& [price, shop, rented_status] = *it;
+            if(!rented_status)
+            {
+                cheapestmovie.push_back(shop);
+                count++;
+            }
 
-//             if(count == 5) return cheapestmovie;
-//         }
+            if(count == 5) return cheapestmovie;
+        }
 
-//         return cheapsetmovie;
-//     }
+        return cheapestmovie;
+    }
     
-//     void rent(int shop, int movie) {
-        
+    void rent(int shop, int movie) {
+        for(auto it = movietoshop[movie].begin(); it!= movietoshop[movie].end();it++)
+        {
+            const auto [price, shopit, rented_status] = *it;
+            if(shopit == shop && !rented_status)
+            {
+                movietoshop[movie].insert({price, shop,true});
+                it = movietoshop[movie].erase(it);
+                // it.third = true;
+                rented.insert({price,shop,movie});// prices,shops,movie
+                break;
+            }
+        }
 
 
-//     }
+    }
     
-//     void drop(int shop, int movie) {
-        
-//     }
-    
-//     vector<vector<int>> report() {
-        
+    void drop(int shop, int movie) {
+        for(auto it = movietoshop[movie].begin(); it!= movietoshop[movie].end();it++)
+        {
+            const auto [price, shopit, rented_status] = *it;
+            if(shopit == shop && rented_status)
+            {
+                // it.third = false;
+                movietoshop[movie].insert({price, shop, false});
+                it = movietoshop[movie].erase(it);
 
-//     }
-// };
+                auto find = rented.find({price,shop,movie});
+                if(find != rented.end())
+                    rented.erase(find);// prices,shops,movie
+                break;
+            }
+        }
+    }
+    
+    vector<vector<int>> report() {
+        vector<vector<int>> res;
+        int count = 0;
+        for(auto it = rented.begin();it!=rented.end();it++)
+        {
+            const auto [price, shop, movie] = *it;
+            res.push_back({shop,movie});
+            count++;
+            if(count == 5) return res;
+        }
+
+        return res;
+
+    }
+};
 
 // /**
 //  * Your MovieRentingSystem object will be instantiated and called as such:
