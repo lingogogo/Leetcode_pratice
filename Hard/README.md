@@ -51,7 +51,7 @@ tree[8] => 管理 [1,2,3,4,5,6,7,8]
 建立C表，並且使用八死卡一個connected component，並且對其做path compression，會將其建立起來的新的union component變成一個較平的樹，在搜索上會較快
 發現: edge的順序會影響其建立起來的graph長相會不一樣
 
-## 定義
+##### 定義
 
 連通圖（Connected Graph): 整個圖是單一連通分量（即任意兩個節點之間都有路徑）。
 
