@@ -85,4 +85,8 @@ tree[8] => 管理 [1,2,3,4,5,6,7,8]
 
 如果直接嘗試用 `std::unordered_map<pair<int, int>, ...>`，編譯器會報錯，找不到對應的哈希函式。
 
+std::set::find() 的時間複雜度是 O(logn)。
 
+std::set::insert() 的時間複雜度是 O(logn)。
+
+std::set::erase() 的時間複雜度是 O(logn)。
