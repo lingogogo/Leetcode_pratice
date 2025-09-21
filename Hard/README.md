@@ -63,4 +63,26 @@ tree[8] => 管理 [1,2,3,4,5,6,7,8]
 
 資料來源: https://web.ntnu.edu.tw/~algo/ConnectedComponent.html
 
+#### 1912 note
+
+`std::map` 可以直接使用 `std::pair<int, int>` 作為 key，但 `std::unordered_map` **預設情況下不行**。
+
+-----
+`std::map` 的底層是**平衡二元搜尋樹**，它依賴一個嚴格的**弱排序 (strict weak ordering)** 規則來排列 key。對於 `std::pair`，C++ 標準函式庫已經預設實現了 `operator<`。
+
+`std::pair` 的 `operator<` 是這樣運作的：
+
+1.  首先比較 `first` 元素。
+2.  如果 `first` 元素相等，就比較 `second` 元素。
+
+這正是 `std::map` 所需要的排序規則，所以可以直接將 `std::pair` 作為 key。
+
+##### **為什麼 `std::unordered_map` 不行？**
+
+`std::unordered_map` 的底層是**哈希表**，它依賴一個**哈希函式 (hash function)** 來將 key 轉換成一個索引值。
+
+`std::unordered_map` 預設只為**基本型別**（如 `int`、`char`、`string` 等）提供了內建的哈希函式。但對於像 `std::pair` 這種**複合型別**，C++ 標準函式庫並沒有提供預設的哈希函式。
+
+如果直接嘗試用 `std::unordered_map<pair<int, int>, ...>`，編譯器會報錯，找不到對應的哈希函式。
+
 
