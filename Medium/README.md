@@ -81,7 +81,7 @@ Use BFS + priority_queue;
 1.  首先比較 `first` 元素。
 2.  如果 `first` 元素相等，就比較 `second` 元素。
 
-這正是 `std::map` 所需要的排序規則，所以你可以直接將 `std::pair` 作為 key。
+這正是 `std::map` 所需要的排序規則，所以可以直接將 `std::pair` 作為 key。
 
 ##### **為什麼 `std::unordered_map` 不行？**
 
