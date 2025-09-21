@@ -1,4 +1,4 @@
-// my method
+// my method(TLE)
 // disadvantage: The bad condition for search function is O(t) t is all the shop with moive
 // drop and rent find out the result with O(n) due to for loop.
 // if we use the function in the set, map (red black tree), with fast search and delete O(n)
