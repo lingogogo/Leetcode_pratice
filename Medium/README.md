@@ -71,7 +71,7 @@ Use BFS + priority_queue;
 
 #### 165 note
 
-這個行為確實讓人困惑，但它完美地解釋了 AddressSanitizer (ASan) 的運作方式，以及為什麼有些錯誤會被立即捕獲，而有些則不會。
+問題: 同樣的錯誤code狀況下，為何短的case不會抱錯，較長的case會抱錯呢?
 
 ---
 
