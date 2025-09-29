@@ -434,8 +434,6 @@ auto my_lambda = [x](int x) {
 
 這樣可以確保程式碼的邏輯清晰，一眼就能看出哪個變數是 Lambda 的**固定狀態 (State)**，哪個是**動態輸入 (Input)**。
 
-
-
 ## overload in class and lambda
 
 如果想在 C++ 中定義一個自訂的類別或結構體，讓它能夠響應像 `+`、`-`、`[]` 這樣的標準運算符，那麼**必須（Must）** 使用 `operator` 這個關鍵字，並緊接著你要重載的運算符符號。
@@ -481,7 +479,7 @@ public:
 
 這就是為什麼在底層機制上，Lambda 呼叫：
 
-$$\mathbf{my\_lambda(5)}$$
+$$\mathbf{my_lambda(5)}$$
 
 等價於這個匿名物件的成員函式呼叫：
 
