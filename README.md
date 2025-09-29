@@ -335,9 +335,9 @@ auto lambda2 = [] { return 1; };
     }; 
     
     // 實際上編譯器在做的事情：
-    // UniqueLambdaName_456 my_lambda(x);
+    // UniqueLambdaName_456 my_lambda(x); capture the x from int x = 10; to set up the default x.
     
-    // my_lambda(5) 的呼叫等價於 my_lambda.operator()(5);
+    // my_lambda(5) 的呼叫等價於 my_lambda.operator()(5); 5 is the y from the lambda function. (int y = 5)
 
     return 0;
     }
