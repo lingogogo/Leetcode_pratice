@@ -322,10 +322,28 @@ auto lambda2 = [] { return 1; };
     ```cpp
     auto my_lambda = [x](int y) { /* ... */ }; 
     ```
-
+    
     這是最常見且推薦的方式。`auto` 讓編譯器自己去推導這個獨特的匿名型別。
+    Ex.
+    ```cpp
+    int main() {
+    int x = 10;
+    
+    // 這是你的 Lambda 程式碼
+    auto my_lambda = [x](int y) { 
+        return x + y; 
+    }; 
+    
+    // 實際上編譯器在做的事情：
+    // UniqueLambdaName_456 my_lambda(x);
+    
+    // my_lambda(5) 的呼叫等價於 my_lambda.operator()(5);
 
-2.  **使用 `std::function` 包裝：**
+    return 0;
+    }
+    ```
+
+3.  **使用 `std::function` 包裝：**
 
     ```cpp
     std::function<int(int)> func = my_lambda;
