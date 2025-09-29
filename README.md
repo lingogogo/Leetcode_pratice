@@ -434,6 +434,61 @@ auto my_lambda = [x](int x) {
 
 這樣可以確保程式碼的邏輯清晰，一眼就能看出哪個變數是 Lambda 的**固定狀態 (State)**，哪個是**動態輸入 (Input)**。
 
+
+
+## overload in class and lambda
+
+如果想在 C++ 中定義一個自訂的類別或結構體，讓它能夠響應像 `+`、`-`、`[]` 這樣的標準運算符，那麼**必須（Must）** 使用 `operator` 這個關鍵字，並緊接著你要重載的運算符符號。
+
+### 運算符重載的基本語法
+
+運算符重載的格式是固定的：
+
+$$\text{[回傳型別]} \ \mathbf{operator}[\text{運算符符號}] \ \text{([參數列表])}$$
+
+| 運算符 | 函式名稱（必須的） | 範例用途 |
+| :--- | :--- | :--- |
+| `+` (加法) | `operator+` | `MyObject c = a + b;` |
+| `[]` (索引) | `operator[]` | `value = MyObject[i];` |
+| `()` (函式呼叫) | `operator()` | `MyObject(arg1, arg2);` |
+| `==` (相等) | `operator==` | `if (a == b)` |
+| `<<` (輸出) | `operator<<` | `std::cout << MyObject;` |
+
+例如，要重載一個類別的加法運算，讓兩個 `Vector` 物件可以相加，必須這樣命名函式：
+
+```cpp
+class Vector {
+public:
+    int x, y;
+    
+    // 必須命名為 operator+
+    Vector operator+(const Vector& other) const {
+        return Vector(x + other.x, y + other.y);
+    }
+};
+
+// 呼叫方式：Vector v3 = v1 + v2;
+// 幕後執行：Vector v3 = v1.operator+(v2);
+```
+
+### 為什麼 Lambda 函式要重載 `operator()`？
+
+這與上面討論的 **Lambda 閉包型別**有關。
+
+當定義一個 Lambda 函式 `[](int y) { ... }`，並用 `my_lambda(5)` 呼叫它時，期望它能像函式一樣被執行。
+
+由於 Lambda **本質上是一個物件**（一個匿名類別的實例），為了讓物件可以像函式一樣使用括號 `()` 被呼叫，編譯器自動為這個匿名類別**重載了函式呼叫運算符 `operator()`**。
+
+這就是為什麼在底層機制上，Lambda 呼叫：
+
+$$\mathbf{my\_lambda(5)}$$
+
+等價於這個匿名物件的成員函式呼叫：
+
+$$\mathbf{my\_lambda.\text{operator()}(5)}$$
+
+因此，`operator` 關鍵字是 C++ 語言中定義任何運算符行為的**語法規範**，**不能**被取代或省略。
+
 -----
 
 # problem
