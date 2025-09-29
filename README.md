@@ -332,7 +332,23 @@ auto lambda2 = [] { return 1; };
     ```
 
     如果需要將 Lambda 賦值給一個明確的變數型別，或者將它作為函式參數傳遞，`std::function` 提供了一個**通用、具名**的容器來持有任何符合特定簽名（例如 `int(int)`）的**可呼叫對象 (Callable Object)**，包括 Lambda、普通函式或函式物件。
+    ```cpp
+    // 1. std::function 告訴編譯器：dp 會是一個接受兩個 int 並回傳 int 的可呼叫物件
+    function<int(int, int)> dp =
+    // 2. 將後面的 Lambda 賦值給這個已知的型別
+    [&](int i, int j) -> int { /* ... */ };
+    ```
+    
+在提供的程式碼中，使用了：
+```cpp
+[&](int i, int j) -> int { ... }
+```
 
+-> int 稱為尾隨回傳型別 (Trailing Return Type)。
+
+雖然 C++14 之後，許多簡單的 Lambda 函式可以讓編譯器自動推導回傳型別，但在使用 std::function 包裝時，或者為了提高程式碼可讀性，明確地寫出 -> int 是很常見的。
+
+在這裡，它只是讓 Lambda 函式體更完整、更清晰地宣告了它將回傳一個 int。
 總而言之，Lambda 的「獨特型別」是 C++ **高效且靈活地實作閉包**的底層機制，可以像寫普通函式一樣寫出一個具備狀態的匿名物件。
 
 ## 問題:關於 C++ **作用域規則 (Scoping Rules)** 和 **變數遮蔽 (Variable Shadowing)** 
