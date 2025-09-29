@@ -479,11 +479,11 @@ public:
 
 這就是為什麼在底層機制上，Lambda 呼叫：
 
-$$\mathbf{my_lambda(5)}$$
+`my_lambda(5)`
 
 等價於這個匿名物件的成員函式呼叫：
 
-$$\mathbf{my\_lambda.\text{operator()}(5)}$$
+`my_lambda.operator()(5)`
 
 因此，`operator` 關鍵字是 C++ 語言中定義任何運算符行為的**語法規範**，**不能**被取代或省略。
 
