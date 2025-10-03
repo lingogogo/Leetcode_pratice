@@ -114,7 +114,7 @@ Use BFS + priority_queue;
 
 ##### 注意:`operator>` 無法單獨實現這個效果
 
-> 雖然直覺上會認為「如果想要最小堆積，我就該重載 `operator>`」，但在 C++ 的 `std::priority_queue` 的上下文中，**無法只透過重載 `operator>` 來達成目的。**
+雖然直覺上會認為「如果想要最小堆積，我就該重載 `operator>`」，但在 C++ 的 `std::priority_queue` 的上下文中，**無法只透過重載 `operator>` 來達成目的。**
 原因在於 `std::priority_queue` 的內部設計： 核心原則：Priority Queue **只使用 `operator<`**
 C++ 標準函式庫中的 `std::priority_queue`（以及底層的 `std::make_heap` 演算法）是這樣設計的：
 **它總是使用 `KeyType::operator<` 來決定兩個元素 $A$ 和 $B$ 的相對順序。**
@@ -136,6 +136,7 @@ bool operator>(const Cell& other) const {
 | :--- | :--- | :--- |
 | **Max-Heap (預設)** | `return A.height < B.height;` | 如果 $A$ 較小，則 $A < B$ 為真，優先級較低。 |
 | **Min-Heap (反轉)** | **`return A.height >= B.height;`** | 如果 $A$ 較小，則 $A \ge B$ 為**假**，Max-Heap 認為 $A$ **不小於** $B$，因此 $A$ 被判定為「更大」，**優先級反而更高**，被推到堆頂。 |
+
 替代方案：傳入自定義比較器
 如果不想修改結構體本身的 `operator<`，還有另一種更標準、更推薦的 C++ 方式來實現 Min-Heap：**傳入一個自定義的比較器 (Custom Comparator)**。
 當你定義 `std::priority_queue` 時，可以傳入第三個範本參數，通常是一個 Lambda 函式或函式物件。
