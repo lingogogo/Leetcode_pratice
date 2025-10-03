@@ -110,13 +110,13 @@ Use BFS + priority_queue;
 
 **重新定義了「小於」的判斷標準，以便讓 Max-Heap 將我們想要的最小值誤認為是最大值。**
 
-##### 注意:`operator>` 無法單獨實現這個效果
+> ##### 注意:`operator>` 無法單獨實現這個效果
 
-雖然直覺上會認為「如果我想要最小堆積，我就該重載 `operator>`」，但在 C++ 的 `std::priority_queue` 的上下文中，**無法只透過重載 `operator>` 來達成目的。**
+> 雖然直覺上會認為「如果想要最小堆積，我就該重載 `operator>`」，但在 C++ 的 `std::priority_queue` 的上下文中，**無法只透過重載 `operator>` 來達成目的。**
 
-原因在於 `std::priority_queue` 的內部設計：
+> 原因在於 `std::priority_queue` 的內部設計：
 
-###### 核心原則：Priority Queue **只使用 `operator<`**
+> ###### 核心原則：Priority Queue **只使用 `operator<`**
 
 C++ 標準函式庫中的 `std::priority_queue`（以及底層的 `std::make_heap` 演算法）是這樣設計的：
 
@@ -136,7 +136,7 @@ bool operator>(const Cell& other) const {
 }
 ```
 
-`std::priority_queue` **根本不會呼叫**你重載的 `operator>`。它只會尋找並使用 `operator<`。
+`std::priority_queue` **根本不會呼叫**重載的 `operator>`。它只會尋找並使用 `operator<`。
 
 ###### 結論：必須修改 `operator<` 的定義
 
@@ -156,8 +156,8 @@ bool operator>(const Cell& other) const {
 ```cpp
 // 定義一個函式物件 (Lambda)，用於告訴 Priority Queue 如何比較
 auto min_heap_comparator = [](const Cell& a, const Cell& b) {
-    // 這裡我們定義何時 a 被認為「較小」（優先級較低）
-    // 為了實現 Min-Heap，我們告訴它：當 a 的高度 > b 的高度時，a 才算是「較小」
+    // 這裡定義何時 a 被認為「較小」（優先級較低）
+    // 為了實現 Min-Heap，告訴它：當 a 的高度 > b 的高度時，a 才算是「較小」
     return a.height > b.height; 
 };
 
@@ -183,7 +183,7 @@ std::priority_queue<
 | :--- | :--- | :--- |
 | **`A < B`** | **$A$ 是否「小於」 $B$？** | 如果 `true`，則 $B$ 優先級高（$B$ 會被排在 $A$ 前面）。 |
 
-##### 2. 你的程式碼 (Min-Heap 模擬)
+##### 2. 程式碼 (Min-Heap 模擬)
 
 程式碼 (`return height >= other.height;`) 定義了新的 `<` 運算符：
 
