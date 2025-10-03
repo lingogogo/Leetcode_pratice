@@ -104,11 +104,76 @@ Use BFS + priority_queue;
 
 這也再次印證了一個黃金法則：**只要程式碼中存在未定義行為，即使在某些情況下沒有崩潰，也不能認為它是正確的。** 任何依賴未定義行為的程式碼都是不穩定的，隨時可能在不同的編譯器、作業系統或輸入下崩潰。
 
+-----
+
 #### 407 note
 
 **重新定義了「小於」的判斷標準，以便讓 Max-Heap 將我們想要的最小值誤認為是最大值。**
 
-**核心原則：Priority Queue 只使用 `operator<`**
+##### 注意:`operator>` 無法單獨實現這個效果
+
+雖然直覺上會認為「如果我想要最小堆積，我就該重載 `operator>`」，但在 C++ 的 `std::priority_queue` 的上下文中，**無法只透過重載 `operator>` 來達成目的。**
+
+原因在於 `std::priority_queue` 的內部設計：
+
+###### 核心原則：Priority Queue **只使用 `operator<`**
+
+C++ 標準函式庫中的 `std::priority_queue`（以及底層的 `std::make_heap` 演算法）是這樣設計的：
+
+> **它總是使用 `KeyType::operator<` 來決定兩個元素 $A$ 和 $B$ 的相對順序。**
+
+具體來說，它會檢查 `A < B`。
+
+  * 如果 `A < B` 回傳 `true`，則 $A$ 被認為「較小」，優先級較低。
+  * 如果 `A < B` 回傳 `false`，則 $A$ 被認為「較大」（或相等），優先級較高。
+
+因此，即使為 `Cell` 結構體重載了 `operator>`，例如：
+
+```cpp
+// ❌ 這樣做對 std::priority_queue 無效
+bool operator>(const Cell& other) const {
+    return height < other.height; // 這是正常的 > 邏輯
+}
+```
+
+`std::priority_queue` **根本不會呼叫**你重載的 `operator>`。它只會尋找並使用 `operator<`。
+
+###### 結論：必須修改 `operator<` 的定義
+
+要將預設的 Max-Heap 反轉為 Min-Heap，**唯一的方法**就是修改 `operator<` 的定義，利用它來反轉優先級的判斷：
+
+| 目的 | 實際 `operator<` 定義 | 邏輯解釋 |
+| :--- | :--- | :--- |
+| **Max-Heap (預設)** | `return A.height < B.height;` | 如果 $A$ 較小，則 $A < B$ 為真，優先級較低。 |
+| **Min-Heap (反轉)** | **`return A.height >= B.height;`** | 如果 $A$ 較小，則 $A \ge B$ 為**假**，Max-Heap 認為 $A$ **不小於** $B$，因此 $A$ 被判定為「更大」，**優先級反而更高**，被推到堆頂。 |
+
+##### 替代方案：傳入自定義比較器
+
+如果不想修改結構體本身的 `operator<`，還有另一種更標準、更推薦的 C++ 方式來實現 Min-Heap：**傳入一個自定義的比較器 (Custom Comparator)**。
+
+當你定義 `std::priority_queue` 時，可以傳入第三個範本參數，通常是一個 Lambda 函式或函式物件。
+
+```cpp
+// 定義一個函式物件 (Lambda)，用於告訴 Priority Queue 如何比較
+auto min_heap_comparator = [](const Cell& a, const Cell& b) {
+    // 這裡我們定義何時 a 被認為「較小」（優先級較低）
+    // 為了實現 Min-Heap，我們告訴它：當 a 的高度 > b 的高度時，a 才算是「較小」
+    return a.height > b.height; 
+};
+
+// 宣告 Priority Queue 時傳入比較器
+// std::priority_queue<Type, Container, Comparator>
+std::priority_queue<
+    Cell, 
+    std::vector<Cell>, 
+    decltype(min_heap_comparator) 
+> min_pq(min_heap_comparator);
+```
+
+這個替代方案的好處是：
+
+1.  **保持物件純淨：** `Cell` 結構體本身的 `operator<` 保持標準的、合理的邏輯。
+2.  **明確意圖：** 程式碼清楚地表明為了 Priority Queue 特地反轉了排序邏輯。
 
 ##### 1. 預設規則 (Max-Heap)
 
@@ -141,4 +206,9 @@ Use BFS + priority_queue;
 3.  **Max-Heap 解讀：** 因為 $A < B$ 是 `false`，所以 Max-Heap 認為 $A$ **更大**（優先級更高）。
 
 因此，**高度越小**，`operator<` 回傳 **`false`** 的機率越高，這反而使 Max-Heap 認為該元素**具有最高優先級**，成功將最小元素推到堆頂，實現 **Min-Heap**。
+
+-----
+
+
+
 
