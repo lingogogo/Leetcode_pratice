@@ -1,3 +1,9 @@
+// 這個方法是從每個點開始搜尋 會浪費較多的時間 因為沒辦法正常使用wholevisited
+// 因為搜尋的先後次序會大大影響其產生的結果 變成這樣的搜索方式只能每次產生一個空的visited進行使用
+// 但這樣會造成大量的time complexity
+// 先後次序問題: 假設該點是一個可以流經左右兩個海洋 但因為先後次序的關係 每次經過也會使用backtracking的方式去紀錄 
+// 會導致某一些路段其實是一個可以流經兩個海洋的高點 但因為事先搜索 導致其被判斷成不適當解 進而造成結果不正確
+
 class Solution {
 public:
     vector<pair<int,int>> dir = {{0,1},{1,0},{-1,0},{0,-1}};
@@ -207,6 +213,8 @@ public:
 // return res;
 //     }
 // };
+// method 2: 這個方法從不同海洋開始搜索 好處就是不需要透過backtracking去紀錄這個位置可以經過哪一個海洋 就不會產生先後次序問題 只要根據每一個邊界開始搜索 並且最後檢查該點是否有具備兩邊的海洋的visited為可行的
+// 即可獲得正確解
 
 class Solution {
 public:
@@ -226,6 +234,7 @@ public:
         for (int j = 0; j < n; j++) dfs(m-1, j, heights, atlantic);
         for (int i = 0; i < m; i++) dfs(i, n-1, heights, atlantic);
 
+        // 檢查pacific and atlantic
         vector<vector<int>> result;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
