@@ -87,7 +87,7 @@ vector<int> findXSum(vector<int>& nums, int k, int x) {
 
 -----
 
-#### 關於隱式this指針 如果在class裡面不用static 那是否可以自己提供隱式this指標 讓其達到可以使用class裡面的function?
+#### 問題: 關於隱式this指針 如果在class裡面不用static 那是否可以自己提供隱式this指標 讓其達到可以使用class裡面的function?
 
 這個概念有一點點誤解，需要澄清：
 
