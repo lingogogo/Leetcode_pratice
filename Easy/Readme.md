@@ -1,4 +1,4 @@
-#### 問題: 如果要使用comparator in class function, 直接在裡面定義必須使用回傳 static bool
+# 問題: 如果要使用comparator in class function, 直接在裡面定義必須使用回傳 static bool
 
 如果我們必須將一個**非靜態成員函數**作為 `std::sort` 的比較器，我們需要將其綁定到一個特定的類別實例（即提供 `this` 指針）。
 
@@ -87,7 +87,7 @@ vector<int> findXSum(vector<int>& nums, int k, int x) {
 
 -----
 
-#### 問題: 關於隱式this指針 如果在class裡面不用static 那是否可以自己提供隱式this指標 讓其達到可以使用class裡面的function?
+# 問題: 關於隱式this指針 如果在class裡面不用static 那是否可以自己提供隱式this指標 讓其達到可以使用class裡面的function?
 
 這個概念有一點點誤解，需要澄清：
 
