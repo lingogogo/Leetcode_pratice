@@ -3,7 +3,6 @@ Leetcode account: https://leetcode.com/u/CianSyue/
 
 ![LeetCode Stats](https://leetcard.jacoblin.cool/CianSyue?theme=white&extension=activity)
 # Leetcode-answer
-Daily Update 
 
 practice C or C++ coding
 
