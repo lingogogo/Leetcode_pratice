@@ -31,3 +31,28 @@ struct ListNode* reverseList(struct ListNode* head){
     ans = recursive(head,NULL);
     return ans;
 }
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+// Method 2
+// struct ListNode* reverseList(struct ListNode* head) {
+//     struct ListNode* fake_head = NULL;
+//     struct ListNode* cur = fake_head;
+//     struct ListNode* next = head;
+
+//     while(next!= NULL)
+//     {
+//         struct ListNode* temp = next->next;
+//         next->next = cur;
+
+//         cur = next;
+//         next = temp;
+//     }
+
+//     return cur; 
+// }
