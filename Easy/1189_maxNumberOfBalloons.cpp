@@ -28,6 +28,8 @@ int maxNumberOfBalloons(char* text) {
     {
         if(ii < 3) maxballoons = fmin(arr[ii],maxballoons);
         else maxballoons = fmin(arr[ii]/2,maxballoons);
+        // One line
+        // maxballoons = (ii < 3) ? fmin(arr[ii],maxballoons) : fmin(arr[ii]/2,maxballoons);
     }
 
     return maxballoons;
